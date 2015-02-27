@@ -84,19 +84,23 @@ void loop(void)
   Serial.print(millis()); Serial.print(", ");
   
   // adjust output with PID:
-  redInput = temps[0];
+  if (isnan(temps[0])) redInput = redInput;
+  else redInput = temps[0];
   redPID.Compute();
   analogWrite(6, redOutput);
   
-  greenInput = temps[1];
+  if (isnan(temps[1])) greenInput = greenInput;
+  else greenInput = temps[1];
   greenPID.Compute();
   analogWrite(9, greenOutput);
   
-  blueInput = temps[2];
+  if (isnan(temps[2])) blueInput = blueInput;
+  else blueInput = temps[2];
   bluePID.Compute();
   analogWrite(10, blueOutput);
   
-  uvInput = temps[3];
+  if (isnan(temps[3])) uvInput = uvInput;
+  else uvInput = temps[3];
   uvPID.Compute();
   analogWrite(11, uvOutput);
   
