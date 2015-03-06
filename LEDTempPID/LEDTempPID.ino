@@ -38,14 +38,14 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 // define variables for PID
-double Setpoint, redInput, redOutput, greenInput, greenOutput, blueInput, blueOutput, uvInput, uvOutput;
+double Setpoint, SetpointB, redInput, redOutput, greenInput, greenOutput, blueInput, blueOutput, uvInput, uvOutput;
 float temps[3];
 int count;
 
 // setup PID loops:
-PID redPID(&redInput, &redOutput, &Setpoint, 33, 10, 6, DIRECT);
+PID redPID(&redInput, &redOutput, &SetpointB, 33, 10, 6, DIRECT);
 PID greenPID(&greenInput, &greenOutput, &Setpoint, 33, 10, 6, DIRECT);
-PID bluePID(&blueInput, &blueOutput, &Setpoint, 33, 10, 6, DIRECT);
+PID bluePID(&blueInput, &blueOutput, &SetpointB, 33, 10, 6, DIRECT);
 PID uvPID(&uvInput, &uvOutput, &Setpoint, 33, 10, 6, DIRECT);
 
 void setup(void)
@@ -58,6 +58,7 @@ void setup(void)
     
   // setup for PID:
   Setpoint = 30;
+  SetpointB = 15;
   redPID.SetMode(AUTOMATIC);
   redPID.SetControllerDirection(REVERSE);
   greenPID.SetMode(AUTOMATIC);
