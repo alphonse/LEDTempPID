@@ -53,12 +53,17 @@ void setup(void)
   // start serial port
   Serial.begin(9600);
 
+  pinMode(6, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+
   // Start up the library
   sensors.begin();
     
   // setup for PID:
-  Setpoint = 30;
-  SetpointB = 15;
+  Setpoint = 35;
+  SetpointB = 25;
   redPID.SetMode(AUTOMATIC);
   redPID.SetControllerDirection(REVERSE);
   greenPID.SetMode(AUTOMATIC);
